@@ -1,0 +1,36 @@
+\documentclass[UTF8,a4paper,11pt]{ctexart}
+\usepackage{listings} 
+\usepackage{xcolor} 
+\usepackage{amsmath}
+\lstset{
+    basicstyle=\tt,
+    keywordstyle=\color{purple}\bfseries,
+    identifierstyle=\color{brown!80!black},
+    commentstyle=\color{gray}
+    showstringspaces=false,
+    numbers = left,                
+    numberstyle = \small,               
+}
+\title{高等社线代第五章笔记}
+\author{5eqn}
+\date{\today}
+\begin{document}
+  \maketitle
+  \section{定义}
+    找到一个一维的 invariant subspace,
+    子空间中的放缩倍率是特征值 $\lambda$,
+    空间中任意一个非零向量都是特征向量。
+  \section{特征方程}
+    构造一个方程，使得其每个解都是一个特征值：
+    \[
+    \begin{aligned}
+      \mathrm{det}(\lambda I-A)=0
+    .\end{aligned}
+    \] 
+    变形后可以得到
+    \[
+    \begin{aligned}
+      \prod_{i=1}^{n} \lambda_i=\mathrm{det}(A)
+    .\end{aligned}
+    \] 
+\end{document}
