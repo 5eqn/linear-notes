@@ -16,12 +16,12 @@
 \date{\today}
 \begin{document}
   \maketitle
-  \section{定义}
-    找到一个一维的 invariant subspace,
+  \section{特征向量和特征值}
+    找到一个一维的 Invariant Subspace,
     子空间中的放缩倍率是特征值 $\lambda$,
-    空间中任意一个非零向量都是特征向量。
+    空间中任意一个非零向量都是特征向量. 
   \section{特征方程}
-    构造一个方程，使得其每个解都是一个特征值：
+    构造一个方程, 使得其每个解都是一个特征值：
     \[
     \begin{aligned}
       \mathrm{det}(\lambda I-A)=0
@@ -31,6 +31,89 @@
     \[
     \begin{aligned}
       \prod_{i=1}^{n} \lambda_i=\mathrm{det}(A)
+    .\end{aligned}
+    \] 
+  \section{相似对角化}
+    定义相似关系为
+    \[
+    \begin{aligned}
+      P^{-1}AP=B \iff A \sim B
+    .\end{aligned}
+    \] 
+    那么如果 $A$ 是特征向量已知的矩阵, 
+    $B$ 是对角矩阵, 
+    $P$ 将基向量映射到$A$ 的特征向量, 
+    由于
+    \[
+    \begin{aligned}
+      AP=PB
+    .\end{aligned}
+    \] 
+    容易看出可以通过这种方式, 
+    由 $A$ 构造出相似对角矩阵$B$.
+
+    注意, $A$ 进行 Polar Decomposition 之后
+    得到的 Isometry 不能含有旋转元素,
+    这可以通过对矩阵减掉重根特征值之后算 Rank 来检验.
+    如果含有旋转元素, 会至少多出两个 Rank.
+    例如, 对于矩阵
+    \[
+    \begin{aligned}
+      \begin{pmatrix} 
+        \cos \theta & -\sin \theta & 0\\
+        \sin \theta & \cos \theta & 0 \\
+        0 & 0 & 1
+      \end{pmatrix} 
+    .\end{aligned}
+    \] 
+    容易发现 1 是一个特征值,
+    假设 1 有重根,
+    将矩阵减去单位阵之后, 
+    假如 $A$ 可以相似对角化,
+    应当得到 Rank 为 0 的矩阵.
+    实际情况是得到了 Rank 为 2 的矩阵,
+    因此 $A$ 不能相似对角化.
+  \section{谱定理}
+    对于复正交矩阵或实对称矩阵,
+    存在由特征向量组成的规范正交基,
+    因此不同特征值对应的特征向量也相互平行.
+    对于复数的情况, 我们首先需要证明正交矩阵保持模:
+    \[
+    \begin{aligned}
+      \langle T^T T v, v \rangle = \langle T T^T v, v \rangle
+      \implies |Tv| = |T^Tv|
+    .\end{aligned}
+    \] 
+    容易知道 $T$ 可以变成上三角矩阵,
+    并且 $T$ 如果是上三角矩阵, 那么它只能是对角阵.
+
+    对于实对称矩阵, 容易发现不可分解的 $T^2+bT+c$ 可逆,
+    但只通过不断应用可分解或不可分解的二次式,
+    在其可以分解为 $v, Tv, T^2v, \ldots, T^n v$ 的形式后,
+    最终的结果一定不可逆.
+    因此, 不可逆的二次式一定可分解成这种形式:
+    \[
+    \begin{aligned}
+      (T-\lambda_1 I)(T-\lambda_2 I)
+    .\end{aligned}
+    \] 
+    这样 $T$ 必定有特征值.
+
+    同时, 容易发现 $T$ 去掉不变子空间之后,
+    依然能保持对称性,
+    因此可以通过归纳推出需要的结论.
+
+    如果只想推出不同特征值对应的特征向量正交,
+    考虑采用以下思路,
+    虽然我并不清楚这个推导路径
+    是怎么从指数复杂度的公式变形无向图中搜索到的:
+    \[
+    \begin{aligned}
+      A \alpha_1=\lambda_1 \alpha_1
+      &\implies \alpha_1^T A=\lambda_1 \alpha_1^T\\
+      &\implies \alpha_1^T A \alpha_2=\lambda_1 \alpha_1^T \alpha_2\\
+      &\implies \lambda_2 \alpha_1^T \alpha_2 = \lambda_1 \alpha_1^T \alpha_2\\
+      &\implies \langle \alpha_1, \alpha_2 \rangle = 0
     .\end{aligned}
     \] 
 \end{document}
